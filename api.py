@@ -1,53 +1,48 @@
-import json
-import requests
-import datetime
-import uuid
-from pprint import pprint
-from websocket import create_connection
+from flask import Flask, request, jsonify
+from transformers import AutoFeatureExtractor, AutoModelForImageClassification
+from PIL import Image
+import os
 
-// # The token is written on stdout when you start the notebook
-notebook_path = '/Untitled.ipynb'
-base = 'http://localhost:9999'
-headers = {'Authorization': 'Token 4a72cb6f71e0f05a6aa931a5e0ec70109099ed0c35f1d840'}
+app = Flask(__name__)
 
-url = base + '/api/kernels'
-response = requests.post(url,headers=headers)
-kernel = json.loads(response.text)
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    image_file = request.files['image']
+    if image_file:
+        image_path = os.path.join('image', image_file.filename)
+        image_file.save(image_path)
 
-// # Load the notebook and get the code of each cell
-url = base + '/api/contents' + notebook_path
-response = requests.get(url,headers=headers)
-file = json.loads(response.text)
-code = [ c['source'] for c in file['content']['cells'] if len(c['source'])>0 ]
+        # Preprocess the uploaded image
+        preprocess = AutoFeatureExtractor.from_pretrained("yusuf802/Leaf-Disease-Predictor")
+        image = Image.open(image_path)
+        inputs = preprocess(images=image, return_tensors="pt")
 
-# Execution request/reply is done on websockets channels
-ws = create_connection("ws://localhost:9999/api/kernels/"+kernel["id"]+"/channels",
-     header=headers)
+        # Load the pre-trained model
+        model = AutoModelForImageClassification.from_pretrained("yusuf802/Leaf-Disease-Predictor")
+        model.eval()
 
-def send_execute_request(code):
-    msg_type = 'execute_request';
-    content = { 'code' : code, 'silent':False }
-    hdr = { 'msg_id' : uuid.uuid1().hex, 
-        'username': 'test', 
-        'session': uuid.uuid1().hex, 
-        'data': datetime.datetime.now().isoformat(),
-        'msg_type': msg_type,
-        'version' : '5.0' }
-    msg = { 'header': hdr, 'parent_header': hdr, 
-        'metadata': {},
-        'content': content }
-    return msg
+        # Pass the preprocessed image through the model
+        with torch.no_grad():
+            outputs = model(**inputs)
 
-for c in code:
-    ws.send(json.dumps(send_execute_request(c)))
+        # Obtain the predictions
+        logits = outputs.logits
+        probabilities = torch.softmax(logits, dim=1)
 
-# We ignore all the other messages, we just get the code execution output
-# (this needs to be improved for production to take into account errors, large cell output, images, etc.)
-for i in range(0, len(code)):
-    msg_type = '';
-    while msg_type != "stream":
-        rsp = json.loads(ws.recv())
-        msg_type = rsp["msg_type"]
-    print(rsp["content"]["text"])
+        # Assuming you want to get the top predicted class and its probability
+        predicted_class = torch.argmax(probabilities, dim=1).item()
+        predicted_probability = probabilities[0][predicted_class].item()
 
-ws.close()
+        # Return the results
+        return jsonify({
+            'message': 'Image uploaded and processed successfully',
+            'image_path': image_path,
+            'predicted_class': predicted_class,
+            'predicted_probability': predicted_probability
+        }), 200
+    else:
+        print('1')
+        return jsonify({'error': 'No image provided'}), 400
+
+if __name__ == '__main__':
+    app.run(debug=True)
