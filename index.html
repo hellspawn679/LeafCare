@@ -6,36 +6,42 @@
     <title>ES LAB ASSIGNMENT</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg">
+    <div class="audio_cont">
+        
+    </div>
+    <section class="im12">
     <h1>A Beautiful Plant is like having a Friend around the House</h1>
+    
     <div class="aside">
         <div class="sec1">
             <h1>Disease Caused in plants By Pollution</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, accusamus pariatur? Est esse facilis suscipit veniam eaque voluptatibus quo, asperiores, et soluta atque aperiam, adipisci dolore fuga voluptate nihil eos?
-            Eos minima tempora, expedita, est animi voluptates aliquid eligendi consequatur eveniet fugit cupiditate facilis quos labore dolor libero aliquam, beatae pariatur sapiente? Ipsum itaque neque aliquam recusandae consequatur vero esse.
-            Animi neque voluptate, eveniet voluptates quisquam vero cum ducimus dolores commodi voluptatum in culpa ab aperiam quos vel fuga labore repellendus laborum sapiente voluptatibus obcaecati nisi nihil accusantium assumenda. Animi.</p>
+            <p>
+                The original Transformer model, as outlined in Vaswani et al.'s 2017 paper, introduced a transformative approach to sequence-to-sequence tasks in natural language processing (NLP). Its key innovation, the self-attention mechanism, allowed the model to weigh the importance of different elements in a sequence dynamically. This departure from traditional recurrent architectures not only improved the model's ability to capture long-range dependencies but also paved the way for highly parallelizable computations, enhancing training efficiency.
+                
+                The intentional simplicity of the Transformer's design has proven to be a strategic choice, fostering widespread adoption and adaptability. This simplicity, characterized by the absence of intricate recurrent connections, has clear advantages. It promotes scalability, enabling the model to handle larger datasets and exploit parallel processing, thus facilitating efficient training. Additionally, the straightforward architecture lends itself to easy implementation and modification, making it an attractive choice for researchers and practitioners working on a diverse range of NLP tasks.</p>
         </div>
         <div class="sec2">
             <img src="main.webp" alt="">
         </div>
+        
     </div>
     <section class="properties1 containers" id="properties1">
         <div class="headings">
             <!-- <span>Recent</span> -->
             <h2>Gases Affecting Plants</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur <br>adipisicing elit. Sunt, repellendus.</p>
-        </div>
+           
         <div class="properties-container containers">
             <!-- Box-1 -->
             <div class="box">
                 <span class="im1"><img src="https://t3.ftcdn.net/jpg/04/80/44/88/360_F_480448858_Bw6oFvgWXyZJ4ZBXp1Gg5cEQYZy74Tt5.jpg" alt=""></span>
-                <h3 class="ss1">CO2</h3>
+                <h3 class="ss1">Methane</h3>
                 <div class="content">
                     <div class="text">
                         <h3>
-                            Current Index - 52%
+                            Current Level - 1.5ppm
                         </h3>
-                        <h3>Better Index-20%</h3>
+                        <h3>Past Level - 0.225ppm</h3>
                     </div>
                     
                 </div>
@@ -43,13 +49,13 @@
             <!-- Box-1 -->
             <div class="box">
                 <span class="im1"><img src="https://thumbs.dreamstime.com/b/factory-air-pollution-day-49864471.jpg" alt=""></span>
-                <h3  class="ss1">Methane</h3>
+                <h3  class="ss1">CO2</h3>
                 <div class="content">
                     <div class="text">
                         <h3>
-                            Current Index - 52%
+                            Current ppm - 420ppm
                         </h3>
-                        <h3>Better Index-20%</h3>
+                        <h3>Past ppm - 280ppm</h3>
                     </div>
                     
                 </div>
@@ -62,9 +68,9 @@
                 <div class="content">
                     <div class="text">
                         <h3>
-                            Current Index - 52%
+                            Current ppm - 0.02 ppm
                         </h3>
-                        <h3>Better Index-20%</h3>
+                        <h3>Past Level - 0.006ppm</h3>
                     </div>
                     
                 </div>
@@ -75,31 +81,57 @@
             </div>
         </div>
     </section>
+    <br><br><br>
+</section>
     <!-- <input type="hidden" role="uploadcare-uploader" name="my_file" data-images-only="true" />
 
 
 
     <script>UPLOADCARE_PUBLIC_KEY = '2ee6d9d30a88ba869a8b';</script>
 <script src="https://ucarecdn.com/libs/widget/3.7.4/uploadcare.full.min.js" charset="utf-8"></script> -->
+<section class="im11">
+
+
 
 <h1 class="hh1">Image Upload</h1>
-    <p class="pp1">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-    <div class="hero">
-        <div class="aside2">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-        </div>
-        <label for="input-file" id="drop-area">
-            <input type="file" accept="image/*" hidden name="" id="input-file">
-            <div id="img-view">
-                <img src="508-icon.png" alt="">
-                <p>Drag and drop or click here to upload image</p>
-                <span>Upload any image from desktop</span>
-            </div>
-        </label>
-        <button id="download-button">Download Image</button>
-    </div>
 
-    <script src="script.js"></script>
+<div class="hero">
+    <div class="aside2"><p class="label">
+        Utilizing advanced computer vision techniques, the system allows users to upload images for the purpose of disease detection. By leveraging cutting-edge image processing algorithms and machine learning models, the system analyzes the uploaded images to identify potential signs or patterns indicative of diseases. This approach holds significant promise for medical diagnostics, enabling a non-invasive and accessible method for early detection. Users can simply upload relevant images, such as medical scans or photographs of affected areas, and the system's intelligent algorithms will assess the visual information to provide insights into potential diseases or health conditions. This integration of image analysis and disease detection contributes to the ongoing development of technology-driven healthcare solutions, offering a convenient and efficient means of preliminary health assessment through visual data.</p></div>
+    <label for="input-file" id="drop-area">
+        <input type="file" accept="image/*" hidden name="" id="input-file">
+        <div id="img-view"> <!-- Change this line to use the correct ID -->
+            <img src="508-icon.png" alt="">
+            <p>
+                drag and drop or click here to upload image
+            </p>
+            <span>Upload any image from desktop</span>
+        </div>
+    </label>
+    <!-- <button id="download-btn" onclick="downloadImage()">Download Image</button> -->
+</div>
+</div>
+
+</section>
+
+<br>
+<h3 class="hh3">
+    Credits
+</h3>
+<div class="im2">
+    <img src="sir.jpg" alt="">
+</div>
+
+    <h1 class="hm1">
+        Prof.Anurag Srivastava
+    </h1>
+ 
+    <h2 class="hm2">Dean of Alumini and External Affairs-ABVIIITM</h2>
+    <br>
+
+
+
+<script src="script.js"></script>
 
 
 
@@ -196,7 +228,7 @@
     function sendQueuedImagesToServer(){
         const formData=new FormData(queuedForm)
         queuedImg.forEach((images,index)=>{
-            formData.append(`file[${index}]`,image)
+            formData.append(file[${index}],image)
         })
         fetch("upload",{
             method:"POST",

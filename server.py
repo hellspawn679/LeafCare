@@ -10,6 +10,7 @@ from io import BytesIO
 from flask_restful import Api
 from flask_cors import CORS  # Import CORS
 import os
+from gtts import gTTS 
 
 # creating the flask app 
 app = Flask(__name__) 
@@ -121,7 +122,13 @@ class Hello(Resource):
         
 
         print(student_details[str(predicted_class)])
+        #language = 'en'
+ 
+        
+        #myobj = gTTS(text=student_details[str(predicted_class)], lang=language, slow=False)
+        #myobj.save("welcome.mp3")  
         # i am getting error  string indices must be integers fix it copilot
+        print("1")
         return jsonify({'you sent': student_details[str(predicted_class)]})
   
   

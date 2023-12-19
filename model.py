@@ -21,7 +21,7 @@ inputs = preprocess(images=image, return_tensors="pt")
 
 # 2. Load the pre-trained feature extractor and model
 model = AutoModelForImageClassification.from_pretrained("yusuf802/Leaf-Disease-Predictor")
-model.eval()
+print(model.eval())
 
 # 3. Pass the preprocessed image through the feature extractor and the model
 with torch.no_grad():
